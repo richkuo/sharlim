@@ -1,0 +1,19 @@
+<h1>Existing Events</h1>
+
+<table>
+<% @events.each do |event| %>
+  <a href=<%= event_path(event) %>>
+    <tr><h3><%= event.title%></h3></tr>
+    <tr><h4><%= event.tagline %></h4></tr>
+    <tr><h4>Number of Attendees: <%= event.viewers.count %></h4></tr>
+  </a>
+  <tr>
+    <td><% link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <hr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Event', new_event_path %>

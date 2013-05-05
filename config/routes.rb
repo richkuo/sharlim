@@ -1,19 +1,21 @@
 Sharlim::Application.routes.draw do
 
+  devise_for :speakers
+  devise_for :users
+
   root to: 'static_pages#home'
 
   match '/about', to: "static_pages#about"
-
   match '/help', to: "static_pages#help"
-
   match '/contact', to: "static_pages#contact"
-
   match '/terms', to: "static_pages#terms"
-
   match '/privacy', to: "static_pages#privacy"
+  match '/signin', to: "sessions#signin"
 
   resources :users
   resources :charges
+  resources :events
+  resources :guestlists, only: [:create, :destroy]
 
 
   # The priority is based upon order of creation:
