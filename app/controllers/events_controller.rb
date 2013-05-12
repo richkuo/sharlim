@@ -2,7 +2,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if current_user
+      @events = current_user.events_attending
+    else
+      @events = Event.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

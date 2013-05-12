@@ -3,7 +3,9 @@
   <h2>Tuesday, June 4th, 2013</h2>
   <h2>7:00pm Eastern Time</h2>
   <p class="lead">We can put the speaker's credentials here.</p>
-  <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
+  <% if !current_user %>
+    <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
+  <% end %>
 </div>
 
 <hr>

@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   attr_accessible :username, :first_name, :last_name
   # has_secure_password
 
-
   before_save { email.downcase! }
   before_save :create_remember_token
 
@@ -23,11 +22,13 @@ class User < ActiveRecord::Base
 
   has_many :reverse_guestlists, foreign_key: "viewer_id", class_name: "Guestlist", dependent: :destroy
   has_many :events_hosted, foreign_key: "host_id", class_name: "Event"
-  has_many :events_attended, through: :reverse_guestlists, source: :event
+  has_many :events_attending, through: :reverse_guestlists, source: :event
+  has_many :charges
 
   def full_name
     return self.first_name + ' ' + self.last_name
   end
+  
   private
 
     def create_remember_token

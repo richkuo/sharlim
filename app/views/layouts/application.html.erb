@@ -22,6 +22,7 @@
   <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   <link rel="shortcut icon" href="../assets/ico/favicon.png">
 </head>
+
 <body>
 <% if notice || alert %>
   <p class="notice"><%= notice %></p>
@@ -31,14 +32,14 @@
   <div class="masthead">
     <ul class="nav nav-pills pull-right">
       <!-- <li class="active"><a href="/">Home</a></li> -->
-      <li><a href="/about">About</a></li>
       <% if user_signed_in? %>
+        <li><%= link_to "My Events", user_events_path(current_user) %></li>
         <li><%= link_to "My Profile", user_path(current_user) %></li>
       <% else %>
         <li><%= link_to "Sign in", new_user_session_path %></li>
       <% end %>
     </ul>
-      <h3 class=""><a href="/">Sharlim</a></h3>
+      <h3 id="nav-title"><a href="/">Sharlim</a></h3>
   </div>
 
   <hr>
@@ -47,12 +48,12 @@
 	
   <hr>
 
-	<div class="footer">
-    <p>&copy; Sharlim 2013</p>
-  </div>
-</div>
-
-
+  <footer>
+  	<div class="footer">
+      <p class="pull-right"><a href="#">Back to top</a></p>
+      <p>&copy; Sharlim 2013 · <a href="/about">About</a> · <a href="#">Terms</a></p>
+    </div>
+  </footer>
 
 </body>
 </html>

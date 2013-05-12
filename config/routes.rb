@@ -12,9 +12,14 @@ Sharlim::Application.routes.draw do
   match '/privacy', to: "static_pages#privacy"
   match '/signin', to: "sessions#signin"
 
-  resources :users
-  resources :charges
-  resources :events
+  resources :users do
+    resources :events
+  end
+
+  resources :events do#, only: [:index, :show, :new, :create, :edit] do #this needs to be restricted to admins
+    resources :charges, only: [:new, :create]
+  end
+
   resources :guestlists, only: [:create, :destroy]
 
 
