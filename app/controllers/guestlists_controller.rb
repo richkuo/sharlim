@@ -11,9 +11,10 @@ class GuestlistsController < ApplicationController
 	end
 
 	def create
-		puts @event
-		puts 'GuestlistsController create'*11
-		puts params.inspect
+		begin
+		# puts @event
+		# puts 'GuestlistsController create'*11
+		# puts params.inspect
 		@event = Event.find_by_id(params[:guestlist][:event_id])
 		@event.add_viewer!(current_user)
 		respond_with @event
