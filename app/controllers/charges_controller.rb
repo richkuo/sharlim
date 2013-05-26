@@ -42,10 +42,10 @@ class ChargesController < ApplicationController
   # POST /charges
   # POST /charges.json
   def create
-    @charge = Charge.new(:user_id => current_user.id, :event_id => @event.id, :amount => @event.price)
     @event = Event.find(params[:event_id])
+    @charge = Charge.new(:user_id => current_user.id, :event_id => @event.id, :amount => @event.price)
     # Amount in cents
-    @amount = @event.price
+    @amount = @event.price.to_i
 
     customer = Stripe::Customer.create(
       :email => current_user.email,
@@ -59,7 +59,7 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
 
-    @charge.stripe_id = charge.inspect
+    @charge.stripe_id = customer.id
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
@@ -71,13 +71,16 @@ class ChargesController < ApplicationController
         # if charge was successful
         @charge.paid = true
         @charge.save
-        format.html { redirect_to @event, notice: 'Payment Successful.' }
+        format.html { redirect_to event_path(@event), notice: 'Payment Successful.' }
+        # redirect_to event_path(@event_path), notice: 'Payment Successful, Enjoy!'
         format.json { render json: @event, status: :created, location: @event }
       else
-        format.html { render action: "new" }
-        format.json { render json: @charge.errors, status: :unprocessable_entity }
+        # format.html { render action: "new" }
+        # format.json { render json: @charge.errors, status: :unprocessable_entity }
       end
     end
+
+    puts @charge.inspect
 
   end
 

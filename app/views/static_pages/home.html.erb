@@ -6,6 +6,9 @@
   <% if !current_user %>
     <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
   <% end %>
+  <% if current_user %>
+    <%= link_to 'Join the event', new_event_charge_path(@event) , class: "btn btn-success", style: "color:white" %>
+  <% end %>
 </div>
 
 <hr>

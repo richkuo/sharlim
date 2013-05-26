@@ -1,6 +1,10 @@
 Pay for this event!
 <br>
 <%= @event.inspect %>
+<hr>
+<%= current_user.inspect %>
+<hr>
+<%= params.inspect %>
 
 <%= form_tag event_charges_path do %>
   <article>

@@ -21,8 +21,8 @@ class GuestlistsController < ApplicationController
 
 		rescue
 			puts $!
-	  	flash[:error] = "Error"
-	  	redirect_to charges_path
+	  		flash[:error] = "Error"
+	  		redirect_to charges_path
 		end
 	end
 end
