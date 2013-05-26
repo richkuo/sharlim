@@ -1,6 +1,9 @@
 Sharlim::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-
+Rails.configuration.stripe = {
+  :publishable_key => ENV['PUBLISHABLE_KEY'],
+  :secret_key      => ENV['SECRET_KEY']
+}
   # Code is not reloaded between requests
   config.cache_classes = true
 
