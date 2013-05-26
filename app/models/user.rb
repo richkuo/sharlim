@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
   def full_name
     return self.first_name + ' ' + self.last_name
   end
+
+  def attending?(event)
+    return self.events_attending.find(event.id)
+  end
   
   private
 

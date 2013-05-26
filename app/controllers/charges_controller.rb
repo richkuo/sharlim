@@ -12,14 +12,14 @@ class ChargesController < ApplicationController
 
   # GET /charges/1
   # GET /charges/1.json
-  def show
-    @charge = Charge.find(params[:id])
+  # def show
+  #   @charge = Charge.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @charge }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html # show.html.erb
+  #     format.json { render json: @charge }
+  #   end
+  # end
 
   # GET /charges/new
   # GET /charges/new.json
@@ -35,9 +35,9 @@ class ChargesController < ApplicationController
   end
 
   # GET /charges/1/edit
-  def edit
-    @charge = Charge.find(params[:id])
-  end
+  # def edit
+  #   @charge = Charge.find(params[:id])
+  # end
 
   # POST /charges
   # POST /charges.json
@@ -60,11 +60,7 @@ class ChargesController < ApplicationController
     )
 
     @charge.stripe_id = customer.id
-
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to charges_path
-    end
+    # @charge.save
 
     respond_to do |format|
       if @charge.save
@@ -72,16 +68,16 @@ class ChargesController < ApplicationController
         @charge.paid = true
         @charge.save
         format.html { redirect_to event_path(@event), notice: 'Payment Successful.' }
-        # redirect_to event_path(@event_path), notice: 'Payment Successful, Enjoy!'
         format.json { render json: @event, status: :created, location: @event }
       else
-        # format.html { render action: "new" }
-        # format.json { render json: @charge.errors, status: :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @charge.errors, status: :unprocessable_entity }
       end
     end
 
-    puts @charge.inspect
-
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to @event
   end
 
   # PUT /charges/1
@@ -111,3 +107,5 @@ class ChargesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+end

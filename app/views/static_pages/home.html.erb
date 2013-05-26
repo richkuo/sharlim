@@ -1,12 +1,13 @@
 <div class="jumbotron">
-  <h1>Bilal Menon</h1>
+  <h1>Bilal Memon</h1>
   <h2>Tuesday, June 4th, 2013</h2>
   <h2>7:00pm Eastern Time</h2>
   <p class="lead">We can put the speaker's credentials here.</p>
   <% if !current_user %>
     <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
-  <% end %>
-  <% if current_user %>
+  <% elsif current_user.attending?(@event) %>
+    <%= link_to 'Go to the event', @event , class: "btn btn-success", style: "color:white" %>
+  <% elsif %>
     <%= link_to 'Join the event', new_event_charge_path(@event) , class: "btn btn-success", style: "color:white" %>
   <% end %>
 </div>
