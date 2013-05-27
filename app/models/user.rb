@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def attending?(event)
-    return self.events_attending.find(event.id)
+    return self.events_attending.find(event.id).nil?
   end
   
   private

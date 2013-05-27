@@ -7,7 +7,7 @@
     <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
   <% elsif current_user && current_user.attending?(@event) %>
     <%= link_to 'Go to the event', @event , class: "btn btn-success", style: "color:white" %>
-  <% elsif current_user%>
+  <% elsif current_user %>
     <%= link_to 'Join the event', new_event_charge_path(@event) , class: "btn btn-success", style: "color:white" %>
   <% end %>
 </div>
