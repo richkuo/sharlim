@@ -1,4 +1,8 @@
 class EventsController < ApplicationController
+  before_filter :user_signed_in?, 
+                only: [:show, :index, :edit, :update, :destroy]
+  before_filter :correct_host,   only: [:edit, :update]
+  before_filter :admin_user,     only: :destroy
   # GET /events
   # GET /events.json
   def index
@@ -50,6 +54,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         @event.host_id = current_user.id
+        @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
@@ -86,4 +91,17 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def correct_host
+      @event = Event.find(params[:id])
+      @user = User.find(current_user.id)
+      redirect_to(root_url) unless @user.host?(@event)
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
+
 end

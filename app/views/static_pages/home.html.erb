@@ -1,40 +1,34 @@
 <div class="jumbotron">
-  <%= image_tag("yahya_profile.jpg") %>
-  <h1>Yahya Rhodus</h1>
-  <h2>Tuesday, June 11th, 2013</h2>
-  <h2>7:00pm Eastern Time</h2>
-  <p class="lead">We can put the speaker's credentials here.</p>
-  <% if !current_user %>
-    <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
-  <% elsif current_user && current_user.attending?(@event) %>
-    <%= link_to 'Go to the event', @event , class: "btn btn-success", style: "color:white" %>
-  <% elsif current_user %>
-    <%= link_to 'Join the event', new_event_charge_path(@event) , class: "btn btn-success", style: "color:white" %>
-  <% end %>
+  <div class="row-fluid">
+    <div class="span4"><%= image_tag("yahya_profile.jpg") %></div>
+    <div class="span8">
+      <h1>Yahya Rhodus</h1>
+      <p class="lead">"Islamic Spirituality and You"</p>
+      <h2>Tuesday, June 11th, 2013</h2>
+      <h2>7:00pm Eastern Time</h2>
+      <br>
+      <% if !current_user %>
+        <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
+      <% elsif current_user && current_user.attending?(@event) %>
+        <%= link_to 'Go to the event', @event , class: "btn btn-success", style: "color:white" %>
+      <% elsif current_user %>
+        <%= link_to 'Join the event', new_event_charge_path(@event) , class: "btn btn-success", style: "color:white" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <hr>
 
 <div class="row-fluid">
-  <div class="span6">
-    <h4>Subheading</h4>
-    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+  <div class="span12">
+    <p class="lead"><h3>About the speaker</h3></p>
+    <p>Ustadh Yahya Rhodus was born in Kansas City, Missouri. At the age of 19, he embraced Islam in Santa Clara, California. He began his study of Islam with Shaykh Hamza Yusuf and visiting Mauritanian scholars such as Shaykh Khatri wuld Baybba and Shaykh Abdullah wuld Ahmadna. In 1998, Ustadh Yahya traveled to Mauritania to pursue a full-time course of study, where he learned from some of Mauritania's greatest scholars, including the distinguished, Murabit al-Hajj. He also spent an interim period in Damascus, Syria where he received formal education in the Arabic language, grammar, and Qur’anic recitation. </p>
 
-    <h4>Subheading</h4>
-    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+    <p>In 2000, Ustadh Yahya moved to Tarim, Yemen to continue his studies at the prestigious learning institute, Dar al-Mustafa. There, he spent his formative years studying with the renowned scholars, Habib 'Umar bin Hafiz and Habib ‘Ali al-Jifri, along with other local scholars. He studied various sciences including Tafsir, Hadith, theology, jurisprudence, legal theory, the Prophetic biography, and Arabic poetry.</p>
 
-    <h4>Subheading</h4>
-    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-  </div>
+    <p>In the latter part of 2005, Ustadh Yahya returned to the U.S. and served as a full-time teacher at Zaytuna Institute. He subsequently returned overseas to further his studies while he also participated in religious programs worldwide, lecturing, teaching, and translating. In 2008, he was the official translator for Habib ‘Ali al-Jifri at the Common Word Conference held at Yale University and he has translated for Habib 'Umar bin Hafiz at speaking engagements internationally. </p>
 
-  <div class="span6">
-    <h4>Subheading</h4>
-    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-    <h4>Subheading</h4>
-    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-    <h4>Subheading</h4>
-    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+    <p>In 2010, Ustadh Yahya returned to California and completed his Bachelor of Arts in Near Eastern Studies at the University of California, Berkeley. He travels regularly teaching, lecturing, and conducting weekend seminars with institutes such as the Deen Intensive Foundation. He also offers on-line instruction through SeekersGuidance and teaches locally at Taleef Collective. Currently, Ustadh Yahya is a full-time instructor at Zaytuna College and is pursuing a Masters Degree in Islamic Studies at the Graduate Theological Union in Berkeley. He lives in San Ramon with his wife and three children.</p>
   </div>
 </div>

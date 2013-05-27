@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_filter :user_signed_in?,
+                only: [:edit, :update, :destroy, :following, :followers]
+  before_filter :correct_user,   only: [:edit, :update]
+  before_filter :admin_user,     only: [:index, :destroy]
   # GET /users
   # GET /users.json
   before_filter :authenticate_user!
@@ -81,4 +85,15 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user == @user
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end

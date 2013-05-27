@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
   def join(event)
     self.events_attending.create_remember_
   end
+
+  def host?(event)
+    return self.id == event.host_id
+  end
   
   private
 
