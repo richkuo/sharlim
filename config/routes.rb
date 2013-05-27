@@ -22,8 +22,6 @@ Sharlim::Application.routes.draw do
 
   resources :guestlists, only: [:create, :destroy]
 
-  resources :charges
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

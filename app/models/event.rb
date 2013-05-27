@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :title, :tagline, :description, :when, :price, :paid
+  attr_accessible :title, :tagline, :description, :when, :price, :paid, :url
   has_one :host, class_name: "User"
   has_many :guestlists, dependent: :destroy
   has_many :viewers, through: :guestlists, source: :viewer

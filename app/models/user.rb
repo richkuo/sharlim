@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   def attending?(event)
     return self.events_attending.exists?(event.id)
   end
+
+  def join(event)
+    self.events_attending.create_remember_
+  end
   
   private
 

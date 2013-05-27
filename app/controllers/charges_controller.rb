@@ -42,20 +42,21 @@ class ChargesController < ApplicationController
   # POST /charges
   # POST /charges.json
   def create
+    @user = current_user
     @event = Event.find(params[:event_id])
-    @charge = Charge.new(:user_id => current_user.id, :event_id => @event.id, :amount => @event.price)
+    @charge = Charge.new(:user_id => @user.id, :event_id => @event.id, :amount => @event.price)
     # Amount in cents
     @amount = @event.price.to_i
 
     customer = Stripe::Customer.create(
-      :email => current_user.email,
+      :email => @user.email,
       :card  => params[:stripeToken]
     )
 
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
-      :description => current_user.full_name,
+      :description => @user.full_name,
       :currency    => 'usd'
     )
 
@@ -67,6 +68,7 @@ class ChargesController < ApplicationController
         # if charge was successful
         @charge.paid = true
         @charge.save
+        @event.add_viewer!(@user)
         format.html { redirect_to event_path(@event), notice: 'Payment Successful.' }
         format.json { render json: @event, status: :created, location: @event }
       else
