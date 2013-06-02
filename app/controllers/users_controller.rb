@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_filter :user_signed_in?,
-                only: [:edit, :update, :destroy, :following, :followers]
-  before_filter :correct_user,   only: [:edit, :update]
+                only: [:following, :followers]
+  before_filter :correct_user,   only: [:edit, :update, :destroy]
   before_filter :admin_user,     only: [:index, :destroy]
   # GET /users
   # GET /users.json
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
   def index
     @users = User.all
 
@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @events = Event.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -64,6 +65,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
+      params[:user].delete(:password) if params[:user][:password].blank?
+      params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }

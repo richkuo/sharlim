@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
-  before_filter :user_signed_in?, 
-                only: [:show, :index, :edit, :update, :destroy]
-  before_filter :correct_host,   only: [:edit, :update]
-  before_filter :admin_user,     only: :destroy
+  before_filter :user_signed_in?, only: [:show, :index]
+  before_filter :correct_host,    only: [:edit, :update]
+  before_filter :admin_user,      only: [:new, :destroy]
+
+  # before_filter :authenticate_user!
+
   # GET /events
   # GET /events.json
   def index

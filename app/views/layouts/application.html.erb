@@ -34,8 +34,8 @@
   <div class="masthead">
     <ul class="nav nav-pills pull-right">
       <% if user_signed_in? %>
-        <li><%= link_to "My Events", user_events_path(current_user) %></li>
-        <li><%= link_to "My Profile", user_path(current_user) %></li>
+        <li><% link_to "Events", events_path %></li>
+        <li><%= link_to "Account", user_path(current_user) %></li>
       <% else %>
         <li><%= link_to "Sign in", new_user_session_path %></li>
       <% end %>

@@ -17,8 +17,6 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
 
   has_many :reverse_guestlists, foreign_key: "viewer_id", class_name: "Guestlist", dependent: :destroy
   has_many :events_hosted, foreign_key: "host_id", class_name: "Event"
@@ -26,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :charges
 
   def full_name
-    return self.first_name + ' ' + self.last_name
+    return "#{self.first_name} #{self.last_name}"
   end
 
   def attending?(event)
@@ -39,6 +37,10 @@ class User < ActiveRecord::Base
 
   def host?(event)
     return self.id == event.host_id
+  end
+
+  def password_changed?
+    !@new_password.blank? or encrypted_password.blank?
   end
   
   private

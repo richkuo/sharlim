@@ -11,15 +11,19 @@
     </div>
   <% end %>
 
-  <%= f.text_field :email, :placeholder => "Email" %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
 
-  <br>
-  <%= f.password_field :password, :placeholder => "Password" %>
-  
-  <br>
-  <%= f.password_field :password_confirmation, :placeholder => "Confirm password" %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
 
   <div class="actions">
-    <%= f.submit "Sign up!", class: "btn btn-success" %>
+    <%= f.submit "Update", class: "btn" %>
   </div>
 <% end %>
