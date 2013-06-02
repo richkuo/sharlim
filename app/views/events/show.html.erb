@@ -2,8 +2,6 @@
   <div class="row-fluid">
 	<h3><%= @event.title %></h3>
 	<h3><%= @event.tagline %></h3>
-	<h3><%= @event.when %></h3>
-	<h3>by: <%= User.find(@event.host_id).first_name %> <%= User.find(@event.host_id).last_name %></h3>
 
 	<% if current_user && current_user.attending?(@event) %>
 		<div>
@@ -15,6 +13,8 @@
 		</div>
 		You have paid for this event.
 	<% elsif current_user && !current_user.attending?(@event) %>
+		<h3><%= @event.when.strftime("%B %d, %Y") %></h3>
+		<h3><%= @event.when.strftime("%H:%M %p") %></h3>
 		<p>Price to join this event: $<%= '%.2f' % (@event.price.to_i/100.0) %></p>
 		<%= form_tag event_charges_path(@event) do %>
 			<script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
