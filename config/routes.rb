@@ -1,5 +1,15 @@
 Sharlim::Application.routes.draw do
 
+  get "comments/new"
+
+  get "comments/create"
+
+  get "comments/edit"
+
+  get "comments/update"
+
+  get "comments/destroy"
+
   devise_for :speakers
   devise_for :users
 
@@ -12,12 +22,17 @@ Sharlim::Application.routes.draw do
   match '/privacy', to: "static_pages#privacy"
   match '/signin', to: "sessions#signin"
 
+  match '/bryan_demo', to: "static_pages#bryan_demo"
+
   resources :users do
-    resources :events
+    resources :events do
+      resources :comments
+    end
   end
 
   resources :events do#, only: [:index, :show, :new, :create, :edit] do #this needs to be restricted to admins
     resources :charges, only: [:new, :create]
+    resources :comments
   end
 
   resources :guestlists, only: [:create, :destroy]
