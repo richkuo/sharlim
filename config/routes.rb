@@ -22,7 +22,9 @@ Sharlim::Application.routes.draw do
   match '/privacy', to: "static_pages#privacy"
   match '/signin', to: "sessions#signin"
 
-  match '/bryan_demo', to: "static_pages#bryan_demo"
+  match '/bryan_thomas', to: "static_pages#bryan_thomas"
+
+  match '/david_otunga', to: "static_pages#david_otunga"
 
   resources :users do
     resources :events do

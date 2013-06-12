@@ -1,0 +1,26 @@
+<div class="jumbotron">
+  <div class="row-fluid">
+    <div class="span5"><center><%= image_tag("bryan_thomas.jpg", :height => '320', :width => '320') %></center></div>
+    <div class="span7">
+      <center><h1>Bryan Thomas</h1></center>
+      <p class="lead">"Think you have what it takes?"</p>
+      <h2>Wed, June 19th, 2013</h2>
+    </div>
+</div>
+<hr>
+    <div class="row">
+      <% if !current_user %>
+        <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
+      <% elsif current_user && current_user.attending?(@event) %>
+        <%= link_to 'Go to the event', @event , class: "btn btn-success", style: "color:white" %>
+      <% elsif current_user %>
+        <%= link_to 'Join the event', new_event_charge_path(@event) , class: "btn btn-success", style: "color:white" %>
+      <% end %>
+    </div>
+  </div>
+
+<div class="row-fluid">
+  <div class="span12">
+
+  </div>
+</div>

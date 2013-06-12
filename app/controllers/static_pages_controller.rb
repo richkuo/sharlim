@@ -18,6 +18,12 @@ class StaticPagesController < ApplicationController
   def privacy
   end
 
-  def bryan_demo
+  def bryan_thomas
+    @event = Event.first
   end
+
+  def david_otunga
+    @event = Event.first
+  end
+
 end
