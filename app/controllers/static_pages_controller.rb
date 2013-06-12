@@ -17,4 +17,7 @@ class StaticPagesController < ApplicationController
 
   def privacy
   end
+
+  def bryan_demo
+  end
 end
