@@ -1,19 +1,25 @@
 <div class="jumbotron">
   <div class="row-fluid">
-    <div class="span12">
-      <h1>Bilal Memon</h1>
-      <p class="lead">"Islamic Spirituality and You"</p>
-      <h2>Wed, June 19th, 2013</h2>
-      <h2>7:00pm Eastern Time</h2>
-      <br>
-      <% if !current_user %>
-        <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
-      <% elsif current_user && current_user.attending?(@event) %>
-        <%= link_to 'Go to the event', @event , class: "btn btn-success", style: "color:white" %>
-      <% elsif current_user %>
-        <%= link_to 'Join the event', new_event_charge_path(@event) , class: "btn btn-success", style: "color:white" %>
-      <% end %>
+    <div class="span4">
+        <%= image_tag(@event.url) %>
     </div>
+    <div class="span8">
+      <h1><%= @event.title %></h1>
+      <p class="lead"><%= @event.tagline %></p>
+    </div>
+    <div style="clear:both"></div>
+
+    <h2>Wed, July 3rd, 2013</h2>
+    <h2>7:00pm Eastern Time</h2>
+
+    <% if !current_user %>
+      <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
+    <% elsif current_user && current_user.attending?(@event) %>
+      <%= link_to 'Go to the event', @event , class: "btn btn-success", style: "color:white" %>
+    <% elsif current_user %>
+      <%= link_to 'Join the event', new_event_charge_path(@event) , class: "btn btn-success", style: "color:white" %>
+    <% end %>
+
   </div>
 </div>
 
@@ -21,5 +27,6 @@
 
 <div class="row-fluid">
   <div class="span12">
+    <%= @event.description %>
   </div>
 </div>
