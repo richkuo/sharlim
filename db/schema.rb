@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527021331) do
+ActiveRecord::Schema.define(:version => 20130615203149) do
 
   create_table "charges", :force => true do |t|
     t.integer  "user_id"
@@ -24,17 +24,32 @@ ActiveRecord::Schema.define(:version => 20130527021331) do
     t.datetime "updated_at",                    :null => false
   end
 
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "ancestry"
+  end
+
+  add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["user_id", "created_at"], :name => "index_comments_on_user_id_and_created_at"
+
   create_table "events", :force => true do |t|
-    t.string   "title",                          :null => false
+    t.string   "title",                             :null => false
     t.string   "tagline"
-    t.string   "description"
+    t.text     "description"
     t.datetime "when"
     t.decimal  "price"
     t.integer  "host_id"
-    t.boolean  "paid",        :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.boolean  "paid",           :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "url"
+    t.string   "image_filename"
   end
 
   add_index "events", ["host_id"], :name => "index_events_on_host_id"
