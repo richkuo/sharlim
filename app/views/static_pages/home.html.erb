@@ -4,13 +4,13 @@
         <%= image_tag(@event.image_filename) %>
     </div>
     <div class="span8">
-      <h1><%= @event.title %></h1>
-      <p class="lead"><%= @event.tagline %></p>
+      <strong style="font-size:50px; line-height:50px"><%= @event.tagline %></strong>
+      <h3>with <%= @event.title %></h3>
     </div>
     <div style="clear:both"></div>
-
-    <h2>Wed, July 3rd, 2013</h2>
-    <h2>7:00pm Eastern Time</h2>
+    <h2>Live Event!</h2>
+    <h3>Wednesday, July 3rd 2013</h3>
+    <h3>7:00pm - 8:30pm Eastern Time</h3>
 
     <% if !current_user %>
       <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
