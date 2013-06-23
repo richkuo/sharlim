@@ -9,6 +9,10 @@ gem 'pg'
 gem 'stripe'
 gem 'bcrypt-ruby'
 gem 'devise'
+gem 'mail'
+gem 'ancestry'
+gem 'simple_form'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

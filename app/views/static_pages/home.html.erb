@@ -9,11 +9,12 @@
     </div>
     <div style="clear:both"></div>
     <h2>Live Event!</h2>
-    <h3>Wednesday, July 3rd 2013</h3>
+    <h3>Tuesday, July 9th 2013</h3>
     <h3>7:00pm - 8:30pm Eastern Time</h3>
 
     <% if !current_user %>
-      <%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %>
+      <p><%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %></p>
+      <p>Space is limited to the first 100 users!</p>
     <% elsif current_user && current_user.attending?(@event) %>
       <%= link_to 'Go to the event', @event , class: "btn btn-success", style: "color:white" %>
     <% elsif current_user %>
