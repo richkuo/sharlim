@@ -1,0 +1,10 @@
+<p>Hi <%= @user.first_name %></p>
+
+<p>Your registration for <%= @event.title %> is complete.</p>
+
+<p>Your payment of $<%= '%.2f' % (@event.price.to_i/100.0) %> has been accepted.</p>
+
+<p>Thanks,</p>
+<p>The Shareilm Team</p>
+
+<p><a href="www.shareilm.com">Shareilm.com</a></p>

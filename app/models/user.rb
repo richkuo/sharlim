@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   has_many :events_hosted, foreign_key: "host_id", class_name: "Event"
   has_many :events_attending, through: :reverse_guestlists, source: :event
   has_many :charges
+  has_many :comments
+
+  after_create :deliver_signup_notification
 
   def full_name
     return "#{self.first_name} #{self.last_name}"
@@ -41,6 +44,21 @@ class User < ActiveRecord::Base
 
   def password_changed?
     !@new_password.blank? or encrypted_password.blank?
+  end
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!(:validate => false)
+    UserMailer.password_reset(self).deliver
+  end
+
+  def deliver_signup_notification
+    UserMailer.signup_notification(self).deliver
+  end
+
+  def deliver_payment_receipt(event)
+    UserMailer.payment_receipt(self, event).deliver
   end
   
   private

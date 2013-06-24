@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   has_one :host, class_name: "User"
   has_many :guestlists, dependent: :destroy
   has_many :viewers, through: :guestlists, source: :viewer
+  has_many :comments, as: :commentable
 
   validates :title, presence: true
   # validates :tagline, presence: true

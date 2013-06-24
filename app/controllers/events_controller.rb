@@ -24,6 +24,8 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @comments = @event.comments
+    @comment = @event.comments.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -50,7 +52,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    puts 'create for events'
     @event = Event.new(params[:event])
 
     respond_to do |format|

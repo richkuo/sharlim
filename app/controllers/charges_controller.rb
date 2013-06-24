@@ -69,6 +69,7 @@ class ChargesController < ApplicationController
         @charge.paid = true
         @charge.save
         @event.add_viewer!(@user)
+        @user.deliver_payment_receipt(@event)
         format.html { redirect_to event_path(@event), notice: 'Payment Successful.' }
         format.json { render json: @event, status: :created, location: @event }
       else

@@ -6,6 +6,9 @@ Sharlim::Application.configure do
   }
 
   Stripe.api_key = Rails.configuration.stripe[:secret_key]
+
+  config.action_mailer.default_url_options= { :host => 'www.shareilm.com' }
+  config.action_mailer.delivery_method = :smtp
   
   # Code is not reloaded between requests
   config.cache_classes = true
