@@ -10,8 +10,8 @@
 			<% else %>
 				<h4 style='color: grey;'>You have paid for this event.</h4>
 				<h4 style='color: grey;'>Video will be available</h4>
-			    <h3><%= @event.when.localtime.strftime("%A, %B %d, %Y") %></h3>
-				<h3><%= @event.when.localtime.strftime("%l:%M %P %Z") %></h3>
+			    <h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %d, %Y") %></h3>
+    			<h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%l:%M %P %Z") %></h3>
 			<% end %>
 		</div>
 	<% elsif current_user && !current_user.attending?(@event) %>

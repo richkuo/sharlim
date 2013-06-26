@@ -9,8 +9,8 @@
     </div>
     <div style="clear:both"></div>
     <h2>Live Event!</h2>
-    <h3><%= @event.when.localtime.strftime("%A, %B %d, %Y") %></h3>
-    <h3><%= @event.when.localtime.strftime("%l:%M %P %Z") %></h3>
+    <h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %d, %Y") %></h3>
+    <h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%l:%M %P %Z") %></h3>
 
     <% if !current_user %>
       <p><%= link_to 'Sign up today!', new_user_path , class: "btn btn-success", style: "color:white" %></p>
