@@ -1,0 +1,11 @@
+$("#comment_<%= @comment.parent.id %>").find(".reply").hide();
+/* create form */    
+$('#comment_<%= @comment.parent.id %>').append("<%= escape_javascript(render 'form') %>");
+$('.link_comments .comment_form').css({'margin-left':'30px'});
+$('.vocab_comments .comment_form').css({'margin-left':'30px'});
+$('.assignment_comments .comment_form').css({'margin-left':'30px'});
+
+/* go to comment */
+  $('html, body').animate({scrollTop: $('html').find("#comment_<%= @comment.parent.id %>").offset().top -100}, 500);
+
+/* hide new comment button */

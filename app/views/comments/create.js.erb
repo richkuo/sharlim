@@ -1,0 +1,28 @@
+	/* create comment */
+	console.log("<%= @comment.parent.nil? %>");
+	<% if !@comment.parent.nil? %>
+	console.log("<%= @comment.parent.nil? %>");
+	  $('#comment_<%= @comment.parent.id %>').after("<%= escape_javascript(render(@comment)) %>");
+	<% end %>
+
+	/* go to comment */
+	<% if @comment.parent.nil? %>
+	  $('html, body').animate({scrollTop: $('html').find("#comment_<%= @comment.id %>").offset().top}, 500);
+	<% end %>
+
+	/* highlight comment */
+	$('#comment_<%= @comment.id %>').css({'backgroundColor':'green'}).animate({'backgroundColor':'white'}, 1000);
+	<% if !@comment.parent.nil? %>
+	  $('#comment_<%= @comment.id %>').animate({'margin-left':'30px'}, 500);
+	<% end %>
+
+	/* Reset the comment form. */
+	$("input[type=text], textarea").val("");
+　　
+  <% if !@comment.parent.nil? %>
+	  /* Hide comment form */
+	  $(".link_comments .comment_form").css({"display":"none"});
+	  
+	  /* hide new reply to button */
+	　$("#comment_<%= @comment.parent.id %>").find(".reply").show();
+  <% end %>

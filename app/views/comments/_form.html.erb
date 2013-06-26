@@ -1,0 +1,32 @@
+<section class="comment_form">
+
+  <%= simple_form_for([@event, @comment], remote: true) do |f| %>
+    <%= f.error_notification %>
+    <%= f.hidden_field :parent_id %>
+
+       <%= f.text_area :content, :rows => 4, :placeholder => "Ask a question!", :id => "comment_input" %>
+
+      <div class="form-actions">
+        <span><%= f.button :submit, "Submit", class: "submit" %></span>
+        <% if params[:action] != "show" %>
+          <span><%= link_to "Cancel", '#', :class => "btn remove_form"%></span>
+        <% end %>
+      </div>
+    
+  <% end %>
+
+</section>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.remove_form').click(function(event){
+      $(".link_comments .comment_form").hide();
+      $('#comment_marker').hide();
+      $(".vocab_comments .comment_form").hide();
+      $(".assignment_comments .comment_form").hide();    
+      $("#comment_<%= @comment.id %> .comment_contents").show();
+      $(".reply").show();
+      event.preventDefault();
+    });
+});
+</script>
