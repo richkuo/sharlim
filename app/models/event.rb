@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   # validates :when, presence: true
 
   def add_viewer!(viewer)
-  	guestlists.create!(viewer_id: viewer.id)
+    guestlists.create!(viewer_id: viewer.id)
   end
 
   def remove_viewer!(viewer)

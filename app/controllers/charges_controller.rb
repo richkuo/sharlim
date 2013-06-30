@@ -52,8 +52,8 @@ class ChargesController < ApplicationController
       :email => @user.email,
       :card  => params[:stripeToken]
     )
-
-    charge = Stripe::Charge.create(
+    
+    charge = Stripe::Charge.new(
       :customer    => customer.id,
       :amount      => @amount,
       :description => "#{@user.email}; Full Name: #{@user.full_name}",
@@ -61,19 +61,21 @@ class ChargesController < ApplicationController
     )
 
     @charge.stripe_id = customer.id
-    # @charge.save
 
     respond_to do |format|
-      if @charge.save
+      if Guestlist.count < 101 && charge.save
         # if charge was successful
         @charge.paid = true
         @charge.save
+
+        # add user to guestlist
         @event.add_viewer!(@user)
+
         @user.deliver_payment_receipt(@event)
         format.html { redirect_to event_path(@event), notice: 'Payment Successful.' }
         format.json { render json: @event, status: :created, location: @event }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to event_path(@event), notice: 'The event is at maximum capacity.' }
         format.json { render json: @charge.errors, status: :unprocessable_entity }
       end
     end

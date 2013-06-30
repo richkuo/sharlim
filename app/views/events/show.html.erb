@@ -17,13 +17,18 @@
 	<% elsif current_user && !current_user.attending?(@event) %>
 		<h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %d, %Y") %></h3>
 		<h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%l:%M %P %Z") %></h3>
-		<p>Price to join this event: $<%= '%.2f' % (@event.price.to_i/100.0) %></p>
-		<%= form_tag event_charges_path(@event) do %>
-			<script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-				data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-				data-description="Sign up for this event!"
-				data-amount=<%= @event.price.to_i %>>
-			</script>
+		<p>The price to join this event is $<%= '%.2f' % (@event.price.to_i/100.0) %></p>
+		<% if Guestlist.count < 101 %>
+			<p>There are <%= 101 - Guestlist.count.to_i %> available seats to this event.</p>
+			<%= form_tag event_charges_path(@event) do %>
+				<script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+					data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+					data-description="Sign up for this event!"
+					data-amount=<%= @event.price.to_i %>>
+				</script>
+			<% end %>
+		<% else %>
+			Sorry, this event is at maximum capacity.
 		<% end %>
 	<% end %>
 	</div>
