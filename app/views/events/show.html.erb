@@ -10,6 +10,7 @@
 			<% else %>
 				<h4 style='color: grey;'>You have paid for this event.</h4>
 				<h4 style='color: grey;'>Video will be available</h4>
+				<h5 style='color: grey;'>If you need help with your payment, email <a href="mailto:support@shareilm.com">support@shareilm.com</a></h5>
 			    <h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %d, %Y") %></h3>
     			<h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%l:%M %P %Z") %></h3>
 			<% end %>
@@ -28,7 +29,8 @@
 				</script>
 			<% end %>
 		<% else %>
-			Sorry, this event is at maximum capacity.
+			<h5>Sorry, this event is at maximum capacity.</h5>
+			<h5>Please email <a href="mailto:support@shareilm.com">support@shareilm.com</a> for more information.</h5>
 		<% end %>
 	<% end %>
 	</div>
