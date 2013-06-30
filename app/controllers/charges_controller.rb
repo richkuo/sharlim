@@ -53,7 +53,9 @@ class ChargesController < ApplicationController
       :card  => params[:stripeToken]
     )
 
-    if Guestlist.count < 1
+    @charge.stripe_customer_id = customer.id
+
+    if Guestlist.count < 101
       charge = Stripe::Charge.create(
         :customer    => customer.id,
         :amount      => @amount,
@@ -63,8 +65,6 @@ class ChargesController < ApplicationController
 
       @charge.stripe_charge_id = charge.id
     end
-
-    @charge.stripe_customer_id = customer.id
 
     respond_to do |format|
       if charge && charge.save
