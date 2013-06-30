@@ -11,17 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615203149) do
+ActiveRecord::Schema.define(:version => 20130630204312) do
 
   create_table "charges", :force => true do |t|
     t.integer  "user_id"
     t.integer  "event_id"
     t.integer  "amount"
-    t.boolean  "paid",       :default => false
-    t.boolean  "refunded",   :default => false
-    t.string   "stripe_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "paid",               :default => false
+    t.boolean  "refunded",           :default => false
+    t.string   "stripe_customer_id"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "stripe_charge_id"
   end
 
   create_table "comments", :force => true do |t|
