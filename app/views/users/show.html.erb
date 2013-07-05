@@ -7,19 +7,3 @@
 <br>
 
 <h1>Events You are Attending</h1>
-
-<table>
-	<% @events.each do |event| %>
-	<div class="hero-unit">
-	  <a href=<%= event_path(event) %>>
-	    <h3><%= event.title%></h3>
-	  </a>
-	    <h4><%= event.tagline %></h4>
-	    <h4>Number of Attendees: <%= event.viewers.count %></h4>
-	  <tr>
-	    <td><% link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	  </tr>
-	  </div>
-	<% end %>
-</table>
-
