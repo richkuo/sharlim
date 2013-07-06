@@ -7,6 +7,8 @@
 		<div>
 			<% if @event.url %>
 				<iframe width="420" height="315" src="<%= @event.url %>" frameborder="0" allowfullscreen></iframe>
+				<iframe src="http://www.slideshare.net/slideshow/embed_code/15474339?rel=0" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe>
+				<div style="margin-bottom:5px"> <strong> <a href="http://www.slideshare.net/kleinerperkins/2012-kpcb-internet-trends-yearend-update" title="2012 KPCB Internet Trends Year-End Update" target="_blank">2012 KPCB Internet Trends Year-End Update</a> </strong> from <strong><a href="http://www.slideshare.net/kleinerperkins" target="_blank">Kleiner Perkins Caufield & Byers</a></strong> </div>
 			<% else %>
 				<h4 style='color: grey;'>You have paid for this event.</h4>
 				<h4 style='color: grey;'>Video will be available</h4>
@@ -36,9 +38,32 @@
 	</div>
 </div>
 
+New Comment
 
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'shareilm'; // required: replace example with your forum shortname
 
-<hr>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-	<%= link_to 'Back', events_path %>
+ <script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'shareilm'; // required: replace example with your forum shortname
 
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
