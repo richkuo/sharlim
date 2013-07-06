@@ -5,7 +5,7 @@
 
 	<% if current_user && current_user.attending?(@event) %>
 		<div>
-			<% if @event.url %>
+			<% if @event.url && @event.url.length > 0 %>
 				<div class="span6">
 					<iframe width="425" height="350" src="<%= @event.url %>" frameborder="0" allowfullscreen></iframe>
 				</div>
