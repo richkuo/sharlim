@@ -5,9 +5,10 @@
     </div>
     <div class="span8">
       <strong style="font-size:50px; line-height:50px"><%= @event.tagline %></strong>
-      <h3>with <%= @event.title %></h3>
+      <h3>with <a href="#about" role="button" data-toggle="modal"><%= @event.title %></a></h3>
     </div>
     <div style="clear:both"></div>
+    <p><br><hr><br></p>
     <h2>Live Event!</h2>
     <h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %d, %Y") %></h3>
     <h3><%= @event.when.in_time_zone('Eastern Time (US & Canada)').strftime("%l:%M %P %Z") %></h3>
@@ -48,10 +49,20 @@
       <li>If you want to INVEST in the OIC region</li>
       <li>Be familiar with HALAL friendly companies</li>
     </ul>
-    <p><strong>Who will teach this class?</strong></p>
-    
-    <p><%= @event.description %></p>
-    
     <p>*OIC = Organization of Islamic Cooperation (57 member countries)</p>
+  </div>
+</div>
+ 
+<!-- Modal -->
+<div id="about" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="aboutLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>About Rafi-uddin Shikoh</h3>
+  </div>
+  <div class="modal-body">
+    <p><%= @event.description %></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
   </div>
 </div>
