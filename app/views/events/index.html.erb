@@ -1,22 +1,24 @@
-<h1>All Events</h1>
+<h1>Past Events</h1>
 
 <table>
 	<% Event.all.each do |event| %>
-		<div class="hero-unit">
-		  <a href=<%= event_path(event) %>>
-		    <h3><%= event.title%></h3>
-		  </a>
-	    <h4><%= event.tagline %></h4>
-	    <h4>Number of Attendees: <%= event.viewers.count %></h4>
-	    <% if current_user && current_user.attending?(event) %>
-	    	You are attending this event.
-	    <% end %>
-	    <% if current_user && current_user.admin? %>
-		  <tr>
-		    <td><% link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		  </tr>
+		<% if event.when < Time.new %>
+			<div class="hero-unit">
+			  <a href=<%= event_path(event) %>>
+			    <h3><%= event.title%></h3>
+			  </a>
+		    <h4><%= event.tagline %></h4>
+		    <h4>Number of Attendees: <%= event.viewers.count %></h4>
+		    <% if current_user && current_user.attending?(event) %>
+		    	You attended this event.
+		    <% end %>
+		    <% if current_user && current_user.admin? %>
+			  <tr>
+			    <td><% link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			  </tr>
+			<% end %>
+		  </div>
 		<% end %>
-	  </div>
 	<% end %>
 </table>
 
