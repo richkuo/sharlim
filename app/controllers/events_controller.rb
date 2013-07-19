@@ -24,7 +24,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    @comments = @event.comments
+    @comments = @event.comments #sort this by date
     @comment = @event.comments.new
 
     respond_to do |format|
