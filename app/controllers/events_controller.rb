@@ -1,18 +1,14 @@
 class EventsController < ApplicationController
-  before_filter :user_signed_in?, only: [:show, :index]
+  before_filter :user_signed_in?, only: [:show, :past_events]
   before_filter :correct_host,    only: [:edit, :update]
-  before_filter :admin_user,      only: [:new, :destroy]
+  before_filter :admin_user,      only: [:index, :new, :edit, :update, :destroy]
 
   # before_filter :authenticate_user!
 
   # GET /events
   # GET /events.json
   def index
-    if current_user
-      @events = current_user.events_attending
-    else
-      @events = Event.all
-    end
+    @events = Event.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -95,6 +91,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def past_events
+    if current_user
+      @events = current_user.events_attending
+    else
+      @events = Event.last
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+    end
+  end
+
   private
 
     def correct_host
@@ -104,7 +113,7 @@ class EventsController < ApplicationController
     end
 
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_url) unless current_user && current_user.admin?
     end
 
 end

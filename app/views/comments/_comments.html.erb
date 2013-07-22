@@ -6,7 +6,7 @@
           <span id="comment_submitter_<%= comment.id %>">
           <%= link_to "#{comment.user.username}", comment.user %></span>
         <% end %>
-      <span class="time">が<%= time_ago_in_words(comment.created_at) %>コメント</span>
+      <span class="time"><%= time_ago_in_words(comment.created_at) %></span>
       <% if (comment.user && comment.user == current_user) %>
         <span class="edit">
           <%= link_to "Edit", edit_event_comment_path(comment), remote: true %>
@@ -20,7 +20,7 @@
       <%= comment.content.try(:html_safe) %>
     </div>
     <% unless params[:controller] == "comments" && params[:action] == "new" %>
-      <span class="reply" id="reply_link_<%= comment.id %>"><%= link_to "このコメントに返信する", new_event_comment_path(:parent_id => comment), remote: true %></span>
+      <span class="reply" id="reply_link_<%= comment.id %>"><%= link_to "asdf", new_event_comment_path(:parent_id => comment), remote: true %></span>
     <% end %>
 
     <div class="clearfix"></div>

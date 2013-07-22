@@ -1,4 +1,4 @@
-<h1>Past Events</h1>
+<h1>All Events</h1>
 
 <table>
 	<% Event.all.each do |event| %>
@@ -21,7 +21,3 @@
 		<% end %>
 	<% end %>
 </table>
-
-<% if current_user && current_user.admin? %>
-	<%= link_to 'New Event', new_event_path %>
-<% end %>

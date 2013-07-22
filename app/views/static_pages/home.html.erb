@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <div class="row-fluid">
     <div class="span4">
-        <%= image_tag(@event.image_filename) %>
+      <%= image_tag(@event.image_filename) %>
     </div>
     <div class="span8">
       <strong style="font-size:50px; line-height:50px"><%= @event.tagline %></strong>
@@ -61,7 +61,7 @@
 <div id="about" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="aboutLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>About Rafi-uddin Shikoh</h3>
+    <h3>About <%= @event.title %></h3>
   </div>
   <div class="modal-body">
     <p><%= @event.description %></p>

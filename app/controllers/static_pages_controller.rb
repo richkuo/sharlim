@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
+  before_filter :admin_user,      only: [:admin_user]
   def home
+    # this is the 'featured' event
     @event = Event.last
   end
 
@@ -24,6 +26,11 @@ class StaticPagesController < ApplicationController
 
   def david_otunga
     @event = Event.first
+  end
+
+  def admin
+    @events = Event.all
+    @users = User.all
   end
 
 end

@@ -1,0 +1,42 @@
+<h1>Admin Page</h1>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h5>Events</h5>
+    <table class="table table-striped">
+      <tr class="info">
+        <td>Event Title</td>
+        <td>Date</td>
+        <td>Price</td>
+      </tr>
+      <% @events.each do |e| %>
+        <tr>
+          <td><%= e.title %></td>
+          <td><%= e.when.in_time_zone('Eastern Time (US & Canada)').strftime("%m/%d/%Y - %l:%M %P %Z") %></td>
+          <td>$<%= '%.2f' % (e.price.to_i/100.0) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <% if current_user && current_user.admin? %>
+      <%= link_to 'New Event', new_event_path %>
+    <% end %>
+  </div>
+
+  <div class="span6">
+    <h5>Users</h5>
+    <table class="table table-striped">
+      <tr class="info">
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Email</td>
+      </tr>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= u.first_name %></td>
+          <td><%= u.last_name %></td>
+          <td><%= u.email %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

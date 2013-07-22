@@ -1,21 +1,20 @@
-<section class="comment_form">
+<div class="row">
 
   <%= simple_form_for([@event, @comment], remote: true) do |f| %>
     <%= f.error_notification %>
     <%= f.hidden_field :parent_id %>
+    <%= f.text_area :content, :style => 'width:100%', :rows => 2, :placeholder => "Ask a question!", :id => "comment_input" %>
 
-       <%= f.text_area :content, :rows => 4, :placeholder => "Ask a question!", :id => "comment_input" %>
-
-      <div class="form-actions">
-        <span><%= f.button :submit, "Submit", class: "submit" %></span>
-        <% if params[:action] != "show" %>
-          <span><%= link_to "Cancel", '#', :class => "btn remove_form"%></span>
-        <% end %>
-      </div>
+    <div>
+      <span><%= f.button :submit, "Submit", class: "submit" %></span>
+      <% if params[:action] != "show" %>
+        <span><%= link_to "Cancel", '#', :class => "btn remove_form"%></span>
+      <% end %>
+    </div>
     
   <% end %>
 
-</section>
+</div>
 
 <script type="text/javascript">
 $(document).ready(function(){

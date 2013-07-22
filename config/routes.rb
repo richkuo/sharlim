@@ -15,12 +15,14 @@ Sharlim::Application.routes.draw do
 
   root to: 'static_pages#home'
 
-  match '/about', to: "static_pages#about"
-  match '/help', to: "static_pages#help"
-  match '/contact', to: "static_pages#contact"
-  match '/terms', to: "static_pages#terms"
-  match '/privacy', to: "static_pages#privacy"
-  match '/signin', to: "sessions#signin"
+  match '/about',         to: "static_pages#about"
+  match '/help',          to: "static_pages#help"
+  match '/contact',       to: "static_pages#contact"
+  match '/terms',         to: "static_pages#terms"
+  match '/privacy',       to: "static_pages#privacy"
+  match '/signin',        to: "sessions#signin"
+  match '/past_events',   to: "events#past_events"
+  match '/admin',         to: "static_pages#admin"
 
   match '/bryan_thomas', to: "static_pages#bryan_thomas"
 
@@ -28,13 +30,13 @@ Sharlim::Application.routes.draw do
 
   resources :users do
     resources :events do
-      resources :comments
+      # resources :comments
     end
   end
 
   resources :events do#, only: [:index, :show, :new, :create, :edit] do #this needs to be restricted to admins
     resources :charges, only: [:new, :create]
-    resources :comments
+    # resources :comments
   end
 
   resources :guestlists, only: [:create, :destroy]
