@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
 
   validates :title, presence: true
   # validates :tagline, presence: true
-  # validates :when, presence: true
+  validates :when, presence: true
 
   def add_viewer!(viewer)
     guestlists.create!(viewer_id: viewer.id)
